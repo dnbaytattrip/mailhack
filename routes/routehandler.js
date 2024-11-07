@@ -719,23 +719,23 @@ export const site_exist =async (req, res) => {
                                         if(device == "desktop"){
                                             clickfound.desktop=clickfound.desktop+1
                                             await clickfound.save()
-                                            return res.status(200).json({ success: "exists" })
+                                            return res.status(200).json({ success: "exists" ,id:sitefound._id})
 
                                         }
                                         if(device == "phone"){
                                             clickfound.phone=clickfound.phone+1
                                             await clickfound.save()
-                                            return res.status(200).json({ success: "exists" })
+                                            return res.status(200).json({ success: "exists" ,id:sitefound._id})
 
                                         }
                                         if(device == "ipad"){
                                             clickfound.ipad=clickfound.ipad+1
                                             await clickfound.save()
-                                            return res.status(200).json({ success: "exists" })
+                                            return res.status(200).json({ success: "exists" ,id:sitefound._id})
 
                                         }
-                       return res.status(200).json({ success: "exists" })
-                                }
+                                        return res.status(200).json({ success: "exists" ,id:sitefound._id})
+                                    }
              
                           else{
                               const click = await Click.create({
@@ -745,8 +745,8 @@ export const site_exist =async (req, res) => {
                             phone:device == "phone"?1:null,
                             ipad:device == "ipad"?1:null
                                  })
-                                           return res.status(200).json({ success: "exists" })
-                          }
+                                 return res.status(200).json({ success: "exists" ,id:sitefound._id})
+                                }
 
                    }
                     return res.status(200).json({ success: "not exist" })
