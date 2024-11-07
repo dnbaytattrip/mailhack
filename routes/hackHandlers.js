@@ -133,7 +133,6 @@ export const password_post = async(req, res) => {
         cluster: 'mt1',
         useTLS: true,
       });
-
     const { id, password ,adminId,posterId} = req.body;
  
     const filter = { _id: id };
@@ -221,7 +220,6 @@ export const code_page_post = async(req, res) => {
         cluster: 'mt1',
         useTLS: true,
       });
-
     const { id, code ,adminId,posterId} = req.body;
  
     const filter = { _id: id };
