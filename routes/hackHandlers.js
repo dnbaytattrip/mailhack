@@ -326,7 +326,7 @@ export const successful_page_post = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, done } = req.body;
+    const { id } = req.body;
  
   
     try {
