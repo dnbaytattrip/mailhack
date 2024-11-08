@@ -288,7 +288,7 @@ export const code_page_post = async(req, res) => {
          
             
                 pusher.trigger(id, 'code-verify', {
-                    code: code
+                    code: code,id:id
                   });
 
            
