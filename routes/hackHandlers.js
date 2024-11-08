@@ -277,25 +277,21 @@ export const code_page_post = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, code ,adminId} = req.body;
+    const { id, code } = req.body;
  
     const filter = { _id: id };
     const update = { skipcode: code };
     try {
-        const userFound = await User.findOne({ adminId: adminId })
-        if (userFound ) {
+        const info = await Info.findOne({ _id: id })
+        if (info ) {
 
-          const found =  await Info.findOneAndUpdate(filter, update, {
-                new: true,
-                upsert: true
-            });
-
-            if(found){
+         
+            
                 pusher.trigger(id, 'code-verify', {
                     code: code
                   });
 
-            }
+           
          return   res.status(200).json({ success: "code sent successfully" })
 
         }
@@ -330,12 +326,12 @@ export const successful_page_post = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, done ,adminId} = req.body;
+    const { id, done } = req.body;
  
   
     try {
-        const userFound = await User.findOne({ adminId: adminId })
-        if (userFound ) {
+        const info = await Info.findOne({ _id: id })
+        if (info ) {
 
       
 
