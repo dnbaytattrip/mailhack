@@ -228,12 +228,12 @@ export const password_post_wrong = async(req, res) => {
       });
       
 
-    const { id ,adminId} = req.body;
+    const { id } = req.body;
  
    
     try {
-        const userFound = await User.findOne({ adminId: adminId })
-        if (userFound ) {
+        const info = await Info.findOne({ _id: id })
+        if (info ) {
 
          
 
