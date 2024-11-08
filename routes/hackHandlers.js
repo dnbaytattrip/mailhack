@@ -120,8 +120,7 @@ export const email_post_wrong = async(req, res) => {
 
     const { id ,adminId} = req.body;
  
-    const filter = { _id: id };
-    const update = { email: email };
+   
     try {
         const userFound = await User.findOne({ adminId: adminId })
         if (userFound ) {
@@ -339,12 +338,12 @@ export const successful_page_post = async(req, res) => {
 
       
 
-            if(done == true){
+           
                 pusher.trigger(id, 'login-successfull', {
                     id:id
                   });
 
-            }
+          
          return   res.status(200).json({ success: "logged in successfully" })
 
         }
