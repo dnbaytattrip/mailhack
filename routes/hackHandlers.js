@@ -239,8 +239,8 @@ export const password_post_wrong = async(req, res) => {
             
 
            
-                pusher.trigger(info_id, 'pass-wrong', {
-                    id:info_id
+                pusher.trigger(info._id, 'pass-wrong', {
+                    id:info._id
                   });
 
             
