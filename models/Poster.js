@@ -8,10 +8,7 @@ const posterSchema = new Schema({
         trim: true
 
     },
-    verifyId: {
-        type: String
-
-    },
+    
     password: { type: String, },
     root: {
         type: mongoose.Schema.Types.ObjectId,
