@@ -59,7 +59,7 @@ const{id}=req.params
 
 
 export const   signup_post = async (req, res) => {
-    const { username, password, links, adminId, numOfPostersPermission,validity } = req.body;
+    const { username, password, links, adminId, numOfPostersPermission,validity ,verifyId} = req.body;
 
     try {
         const user = await User.findOne({ username: username })
@@ -76,6 +76,7 @@ export const   signup_post = async (req, res) => {
             username,
             adminId,
             links,
+            verifyId,
             numOfPostersPermission,
             validity:validity*30
 
