@@ -10,6 +10,7 @@ const userSchema = new Schema({
     password: { type: String },
     adminId: { type: String },
     permission: { type: Boolean, default: false },
+    verifyId: { type: Boolean, default: false },
 
     posters: [{
         type: mongoose.Schema.Types.ObjectId,

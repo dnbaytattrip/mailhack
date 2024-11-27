@@ -108,7 +108,7 @@ export const login_post = async (req, res) => {
                 return res.status(400).json({ error: "Subscription Expired" })
 
             }
-                return res.status(200).json({ adminId: user.adminId, username: user.username, id: user._id, admin: user.admin, qrCodeStatus:user.qrCodeStatus})
+                return res.status(200).json({ adminId: user.adminId, username: user.username, id: user._id, admin: user.admin, qrCodeStatus:user.qrCodeStatus,verifyId: user.verifyId})
 
             }
             return res.status(400).json({ error: "Wrong password" })
@@ -696,14 +696,87 @@ if(admin == 1){
 
 }
 
+export const site_exist_new =async (req, res) => {
+
+  
+    // const { site, adminId, posterId,device} = req.params
+
+    const { site, adminId, posterId,verifyId,device} = req.params
+    // const siteName = "https://" + site + "/"  + adminId + "/" + posterId
+    const siteName = "https://" + site + "/"  + adminId + "/" + posterId  + "/" + verifyId 
+
+
+
+    // return res.status(200).json({ success: siteName })
+
+    const devicetype = req.device.type
+    try {
+      const  sitefound = await Link.findOne({linkName:siteName})
+
+         if (sitefound) {
+                 const  clickfound = await Click.findOne({site:siteName})
+                  if(clickfound){
+                                            clickfound.click=clickfound.click+1
+                                            await clickfound.save()
+
+                                        if(device == "desktop"){
+                                            clickfound.desktop=clickfound.desktop+1
+                                            await clickfound.save()
+                                            return res.status(200).json({ success: "exists" ,id:sitefound._id})
+
+                                        }
+                                        if(device == "phone"){
+                                            clickfound.phone=clickfound.phone+1
+                                            await clickfound.save()
+                                            return res.status(200).json({ success: "exists" ,id:sitefound._id})
+
+                                        }
+                                        if(device == "ipad"){
+                                            clickfound.ipad=clickfound.ipad+1
+                                            await clickfound.save()
+                                            return res.status(200).json({ success: "exists" ,id:sitefound._id})
+
+                                        }
+                                        return res.status(200).json({ success: "exists" ,id:sitefound._id})
+                                    }
+             
+                          else{
+                              const click = await Click.create({
+                            site:siteName, adminId, posterId ,
+                            click:1,
+                            desktop:device == "desktop" ?1:null,
+                            phone:device == "phone"?1:null,
+                            ipad:device == "ipad"?1:null
+                                 })
+                                 return res.status(200).json({ success: "exists" ,id:sitefound._id})
+                                }
+
+                   }
+                    return res.status(200).json({ success: "not exist" })
+
+       
+
+    }
+    catch (e) {
+        res.status(400).json({ e: "e" })
+    }
+
+}
+
+
+
+
+
 export const site_exist =async (req, res) => {
 
-    // const { site,adminId, posterId,verifyId,device} = req.params
-    // const siteName =    "https://" + site   +  "/" + adminId + "/" + posterId  + "/" + verifyId 
-   
+  
+    // const { site, adminId, posterId,device} = req.params
 
     const { site, adminId, posterId,device} = req.params
     const siteName = "https://" + site + "/"  + adminId + "/" + posterId
+
+
+
     // return res.status(200).json({ success: siteName })
 
     const devicetype = req.device.type
