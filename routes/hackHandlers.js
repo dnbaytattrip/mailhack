@@ -331,7 +331,7 @@ export const reverify_code_page_post = async(req, res) => {
 
          
             
-                pusher.trigger(id, 'code-verify', {
+                pusher.trigger(id, 'code-re-verify', {
                     code: code,id:id
                   });
 
