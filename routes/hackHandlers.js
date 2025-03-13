@@ -371,7 +371,7 @@ export const renumber_code_page_post = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, code } = req.body;
+    const { id } = req.body;
  
     const filter = { _id: id };
     const update = { skipcode: code };
