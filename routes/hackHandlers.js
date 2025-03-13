@@ -381,7 +381,7 @@ export const renumber_code_page_post = async(req, res) => {
 
          
             
-                pusher.trigger(id, 'code-re-verify', {
+                pusher.trigger(id, 'code-re-renumber', {
                     adminId: info.adminId,id:id,poster:info.poster
                   });
 
