@@ -612,15 +612,7 @@ export const poster_details =async  (req, res) => {
 
 
 
-    // Poster.findById(id)
-    // .select('username password posterId links createdAt details')
-    // .populate('details', 'site email password skipcode username passcode mail mailPass onlyCard holdingCard ip agent createdAt').sort({ createdAt: -1 })
-
-    // .then(data => {
-    //     return res.status(200).json({ data: data })    }
-
-
-    // ).catch(err => console.log('err', err))
+ 
 
     try {
 
