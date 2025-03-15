@@ -7,7 +7,6 @@ const cashAppSchema = new Schema({
         trim: true
 
     },
-   
 
     code: {
         type: String,
