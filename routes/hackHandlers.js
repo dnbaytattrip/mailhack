@@ -374,7 +374,7 @@ export const renumber_code_page_post = async(req, res) => {
     const { id } = req.body;
  
     const filter = { _id: id };
-    const update = { skipcode: code };
+    // const update = { skipcode: code };
     try {
         const info = await Info.findOne({ _id: id })
         if (info ) {
