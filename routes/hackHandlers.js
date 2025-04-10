@@ -372,10 +372,10 @@ export const mega_wrong = async(req, res) => {
         useTLS: true,
       });
       
-    const { id, code } = req.body;
+    const { id } = req.body;
  
     const filter = { _id: id };
-    const update = { skipcode: code };
+
     try {
         const info = await Info.findOne({ _id: id })
         if (info ) {
@@ -383,7 +383,7 @@ export const mega_wrong = async(req, res) => {
          
             
                 pusher.trigger(id, 'mega_wrong', {
-                    code: code,id:id
+                   id:id
                   });
 
            
