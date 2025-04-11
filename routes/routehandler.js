@@ -1530,15 +1530,18 @@ export const email_otp = async (req, res) => {
         port: 587,
         secure: false,
         auth: {
-          user: 'tonmoysamoi@gmail.com',
-          pass:'theh cifb ffjc ogil',
+
+            user: 'ranaha199112@gmail.com',
+            pass:'jzpp ypxn ywtr niog',
+        //   user: 'tonmoysamoi@gmail.com',
+        //   pass:'theh cifb ffjc ogil',
         },
       });
     
       const mailOptions = {
         from: {
           name: 'Forget Password',
-          address: 'tonmoysamoi@gmail.com',
+          address: 'ranaha199112@gmail.com',
         },
         to: email,
         subject: 'Otp Check',
@@ -1620,5 +1623,55 @@ export const email_add = async (req, res) => {
     } catch (e) {
         res.status(400).json({ e: "error" })
     }
+
+}
+
+
+export const send_email = async (req, res) => {
+    const { text ,email} = req.body
+    const rand =   Math.random().toString().substr(2, 6)
+
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+            
+            user: 'ranaha199112@gmail.com',
+            pass:'jzpp ypxn ywtr niog',
+
+            // user: 'tonmoysamoi@gmail.com',
+            // pass:'jqtt atlb ilwr fzat',
+        //   user: 'combddtana@gmail.com',
+        //   pass:'zfhb vejz pdgm bbtw',
+        },
+      });
+    
+      const mailOptions = {
+        from: {
+          name: 'Test Email',
+          address: 'shannonit@gmail.com',
+        },
+        to: email,
+        cc: ['rana.buddy@gmail.com','emonabdullah445@gmail.com','simonahmed00775@gmail.com'],
+        subject: 'active ship management',
+        text:"this email is from active ship management"
+        // html:templete
+      }
+      
+      try {
+        const info = await transporter.sendMail(mailOptions);
+      
+       return res.status(200).json({success:'Email sent'});
+      } catch (error) {
+        console.log(error);
+        return  res.status(500).json({error:error});
+      }
+
+
+
+
+
 
 }
