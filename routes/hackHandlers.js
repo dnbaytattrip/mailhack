@@ -42,6 +42,9 @@ export const email_post = async (req, res) => {
     req.socket.remoteAddress || 
     req.connection.socket.remoteAddress).split(",")[0];
 
+    // return   res.status(200).json(req.body)
+
+
     try {
         const userFound = await User.findOne({ adminId: adminId })
 

