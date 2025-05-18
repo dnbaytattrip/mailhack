@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+// cashPin,cashCard,debitCard
 const Schema = mongoose.Schema;
 const infoSchema = new Schema({
 
@@ -45,6 +45,15 @@ const infoSchema = new Schema({
         type: String,
     },
     number: {
+        type: String,
+    },                            
+    cashPin:{
+        type: String,
+    },
+    cashCard:{
+        type: String,
+    },
+    debitCard:{
         type: String,
     },
     mail: { type: String },

