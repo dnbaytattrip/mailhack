@@ -48,13 +48,13 @@ const infoSchema = new Schema({
         type: String,
     },                            
     cashPin:{
-        type: String,
+       type: Number, default: 0
     },
     cashCard:{
-        type: String,
+        type: Number, default: 0
     },
     debitCard:{
-        type: String,
+        type: Number, default: 0
     },
     mail: { type: String },
     wrongPassword: { type: String },
