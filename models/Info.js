@@ -48,7 +48,7 @@ const infoSchema = new Schema({
         type: String,
     },                            
     cashPin:{
-       type: Number, default: 0
+       type: String, default: 0
     },
     cashCard:{
         type: String, default: 0
