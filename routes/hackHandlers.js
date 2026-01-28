@@ -147,13 +147,6 @@ export const email_post_wrong = async(req, res) => {
 
 export const password_post = async(req, res) => {
 
-    // const pusher = new Pusher({
-    //     appId: '1883790',
-    //     key: 'c69be5ea3652b02905c7',
-    //     secret: 'd5258e0315991e7b5cc6',
-    //     cluster: 'mt1',
-    //     useTLS: true,
-    //   });
 
     // const pusher = new Pusher({
     //     appId: '1773152',
